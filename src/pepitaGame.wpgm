@@ -10,6 +10,7 @@ program PepitaGame {
 	game.height(10)
 	game.width(10)
 	game.ground("suelo.png")
+	
 
 //	VISUALES
 	game.addVisual(alpiste)
@@ -18,17 +19,37 @@ program PepitaGame {
 	game.addVisual(villaGesell)
 	game.addVisual(pepita)
 
-//	TECLADO
-	keyboard.h().onPressDo { game.say(pepita, "Hola chiques!") }
+	game.showAttributes(pepita)
+	
 
-	keyboard.v().onPressDo { pepita.volaHacia(villaGesell) }
+//	TECLADO	
+	keyboard.h().onPressDo({ saludador.saludar() }) 
+
+	keyboard.v().onPressDo({ pepita.volaHacia(villaGesell) })
 	keyboard.b().onPressDo { pepita.volaHacia(buenosAires) }
 
 	keyboard.up().onPressDo { pepita.move(pepita.position().up(1)) }
 	keyboard.down().onPressDo { pepita.move(pepita.position().down(1)) }
 	keyboard.left().onPressDo { pepita.move(pepita.position().left(1)) }
 	keyboard.right().onPressDo { pepita.move(pepita.position().right(1)) }
-		
+
+//	COLISIONES
+
+//    OPCION 1
+//    game.onCollideDo(pepita, { comida => 
+//    	if (comida.sosComida()) {
+//    		pepita.come(comida)
+//    	}
+//    })
+    
+//    OPCION 2
+//    game.onCollideDo(manzana, { alguien => alguien.come(manzana) })
+//    game.onCollideDo(alpiste, { alguien => alguien.come(alpiste) })
+    
+//    OPCION 3
+    game.onCollideDo(pepita, { cosa => cosa.colisionasteCon(pepita) })
+    
+
 //	START
 	game.start()
 }

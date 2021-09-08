@@ -1,9 +1,20 @@
+import wollok.game.*
+import pepita.*
+
 object manzana {
 	var property position = game.at(5,1)
 
 	method image() = "manzana.png"
 	
 	method energia() = 80
+	
+	method colisionasteCon(ave) {
+		ave.come(self)
+	}
+	
+	method colisionasteConPersona(persona) {
+		persona.colisionasteConManzana()
+	}
 }
 
 object alpiste {
@@ -12,4 +23,16 @@ object alpiste {
 	method image() = "alpiste.png"
 	
 	method energia() = 5
+	
+	method colisionasteCon(ave) {
+		ave.come(self)
+	}
+}
+
+
+object saludador {
+	method saludar() {
+		game.say(pepita, "Hola chiques!")
+		game.say(pepita, "Adiós!")
+	}
 }

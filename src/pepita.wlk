@@ -9,6 +9,7 @@ object pepita {
 	method image() = "pepita.png"
 
 	method come(comida) {
+		console.println("Comiendo")
 		energia = energia + comida.energia()
 	}
 	
